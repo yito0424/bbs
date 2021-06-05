@@ -21,4 +21,7 @@ Route::get('/', function () {
 Route::get('/dashboard', [ThreadController::class, 'index'])
         ->middleware(['auth'])->name('dashboard');
 
+Route::get('/threads/{id}', [ThreadController::class, 'show'])
+        ->middleware(['auth'])->name('thread.show');
+
 require __DIR__.'/auth.php';
