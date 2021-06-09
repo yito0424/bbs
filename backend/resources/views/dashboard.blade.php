@@ -10,12 +10,18 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     @foreach ($threads as $thread)
-                        <p>
+                        <p class="py-2">
                             <a href='{{ route("thread.show", ["id" => $thread->id]) }}' class="text-2xl">
-                            {{ $thread->content }}
-                            </a>
+                                {{ $thread->content }}
+                            </a><br>
+                            投稿者：{{ $thread->user->name }}
                         </p>
                     @endforeach
+                    <div class="flex items-center justify-end mt-4">
+                        <a href="{{ route("thread.create") }}" type="submit" class="inline-block items-center bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                            新規投稿
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

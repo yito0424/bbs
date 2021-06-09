@@ -25,7 +25,7 @@ class ThreadController extends Controller
      */
     public function create()
     {
-        //
+        return view('new');
     }
 
     /**
@@ -36,7 +36,14 @@ class ThreadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $thread = new Thread();
+        $user = \Auth::user();
+
+        $thread->content = $request->content;
+        $thread->user_id = $user->id;
+        $thread->save();
+        
+        return redirect()->route('dashboard');
     }
 
     /**
