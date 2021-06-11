@@ -31,7 +31,7 @@ class ReplyController extends Controller
     {
         $reply = Reply::find($rep_id);
         $user = \Auth::user();
-        if($user->id == $reply->user_id){
+        if($user->id == $reply->user_id || $user->role == 'admin'){
             $reply->content = $request->content;
             $reply->save();
         }
@@ -42,7 +42,7 @@ class ReplyController extends Controller
     {
         $reply = Reply::find($rep_id);
         $user = \Auth::user();
-        if($user->id == $reply->user_id){
+        if($user->id == $reply->user_id || $user->role == 'admin'){
             $reply->delete();
         }
         return redirect()->route('thread.show', ['id' => $reply->thread_id]);

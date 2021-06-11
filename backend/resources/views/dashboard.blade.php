@@ -16,7 +16,7 @@
                             </a><br>
                             投稿者：{{ $thread->user->name }}
                             @auth
-                                @if (Auth::user()->id == $thread->user->id)
+                                @if (Auth::user()->id == $thread->user->id || Auth::user()->role =='admin')
                                  | <a href='{{ route("thread.edit", ["id" =>  $thread->id]) }}'>編集</a>
                                 <form method="POST" action='{{ route("thread.destroy", ["id" => $thread->id]) }}'>
                                     @csrf

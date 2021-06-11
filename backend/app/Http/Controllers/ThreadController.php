@@ -81,7 +81,7 @@ class ThreadController extends Controller
     {
         $thread = Thread::find($id);
         $user = \Auth::user();
-        if($user->id == $thread->user_id){
+        if($user->id == $thread->user_id || $user->role == 'admin'){
             $thread->content = $request->content;
             $thread->save();
         }
@@ -98,7 +98,7 @@ class ThreadController extends Controller
     {
         $thread = Thread::find($id);
         $user = \Auth::user();
-        if($user->id == $thread->user_id){
+        if($user->id == $thread->user_id || $user->role == 'admin'){
             $thread->delete();
         }
         return redirect()->route('dashboard');
