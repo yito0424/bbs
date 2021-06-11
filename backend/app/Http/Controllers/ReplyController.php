@@ -19,4 +19,32 @@ class ReplyController extends Controller
         
         return redirect()->route('thread.show', ['id' => $id]);
     }
+
+    public function edit(Request $request, $rep_id, Reply $reply)
+    {
+        $reply = Reply::find($rep_id);
+
+        return view('edit_reply', ['reply' => $reply]);
+    }
+
+    public function update(Request $request, $rep_id, Reply $reply)
+    {
+        $reply = Reply::find($rep_id);
+        $user = \Auth::user();
+        if($user->id == $reply->user_id){
+            $reply->content = $request->content;
+            $reply->save();
+        }
+        return redirect()->route('thread.show', ['id' => $reply->thread_id]);
+    }
+
+    public function destroy($rep_id, Reply $reply)
+    {
+        $reply = Reply::find($rep_id);
+        $user = \Auth::user();
+        if($user->id == $reply->user_id){
+            $reply->delete();
+        }
+        return redirect()->route('thread.show', ['id' => $reply->thread_id]);
+    }
 }

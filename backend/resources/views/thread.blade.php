@@ -13,7 +13,18 @@
                     <p>投稿者：{{ $thread->user->name }}</p>
                     @foreach ($replies as $reply)
                         <p class="text-xl mt-4 ml-4">{{ $reply->content }}</p>
-                        <p class="ml-4 mb-4">投稿者：{{ $reply->user->name }}</p>
+                        <div class="ml-4 mb-4">投稿者：{{ $reply->user->name }}
+                            @auth
+                                @if (Auth::user()->id == $reply->user->id)
+                                    | <a href='{{ route("reply.edit", ["rep_id" => $reply->id]) }}'>編集</a>
+                                    <form method="POST" action='{{ route("reply.destroy", ["rep_id" => $reply->id]) }}'>
+                                        @csrf
+                                        <input type="hidden" name="_method" value="delete">
+                                        <input type="submit" class="inline-block items-center border-2 border-red-400 bg-red-100 text-red-400 hover:bg-red-400 hover:text-white text-white font-bold py-2 px-4 rounded" value="削除">
+                                    </form>
+                                @endif
+                            @endauth
+                        </div>
                     @endforeach
                     <form method="POST" action='{{ route("reply.store", ["id" => $thread->id]) }}'>
                         @csrf

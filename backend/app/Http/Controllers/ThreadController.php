@@ -65,9 +65,9 @@ class ThreadController extends Controller
      * @param  \App\Models\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function edit(Thread $thread)
-    {
-        //
+    public function edit(Request $request, $id, Thread $thread){
+        $thread = Thread::find($id);
+        return view('edit', ['thread' => $thread]);
     }
 
     /**
@@ -77,9 +77,15 @@ class ThreadController extends Controller
      * @param  \App\Models\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Thread $thread)
+    public function update(Request $request, $id, Thread $thread)
     {
-        //
+        $thread = Thread::find($id);
+        $user = \Auth::user();
+        if($user->id == $thread->user_id){
+            $thread->content = $request->content;
+            $thread->save();
+        }
+        return redirect()->route('dashboard');
     }
 
     /**
@@ -88,8 +94,13 @@ class ThreadController extends Controller
      * @param  \App\Models\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Thread $thread)
+    public function destroy($id, Thread $thread)
     {
-        //
+        $thread = Thread::find($id);
+        $user = \Auth::user();
+        if($user->id == $thread->user_id){
+            $thread->delete();
+        }
+        return redirect()->route('dashboard');
     }
 }
