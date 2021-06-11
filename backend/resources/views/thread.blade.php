@@ -15,7 +15,7 @@
                         <p class="text-xl mt-4 ml-4">{{ $reply->content }}</p>
                         <div class="ml-4 mb-4">投稿者：{{ $reply->user->name }}
                             @auth
-                                @if (Auth::user()->id == $reply->user->id)
+                                @if (Auth::user()->id == $reply->user->id || Auth::user()->role == 'admin')
                                     | <a href='{{ route("reply.edit", ["rep_id" => $reply->id]) }}'>編集</a>
                                     <form method="POST" action='{{ route("reply.destroy", ["rep_id" => $reply->id]) }}'>
                                         @csrf
