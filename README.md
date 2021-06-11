@@ -25,15 +25,15 @@ dockerとphp（laravel）で作成したスレッド式掲示板です．
 ## ローカルでの動作確認手順
 1. Dockerをインストールし，起動しておきます．
 2. このリポジトリをcloneし，リポジトリ内に移動します．
-```sh
-$ git clone  && cd bbs
+```
+$ git clone https://github.com/yito0424/bbs.git && cd bbs
 ```
 3. Dockerコンテナを起動します．
-```sh
+```
 $ docker compose up -d --build
 ```
 4. コンテナが起動したことを確認します．
-```sh
+```
 $ docker compose ps
   NAME                SERVICE             STATUS              PORTS
   bbs_app_     1      app                 running             9000/tcp
