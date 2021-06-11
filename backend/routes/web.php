@@ -44,4 +44,13 @@ Route::post('/threads', [ThreadController::class, 'store'])
 Route::post('/threads/{id}/reply', [ReplyController::class, 'store'])
         ->middleware(['auth'])->name('reply.store');
 
+Route::get('/reply/edit/{rep_id}', [ReplyController::class, 'edit'])
+        ->middleware(['auth'])->name('reply.edit');
+
+Route::delete('/reply/edit/{rep_id}', [ReplyController::class, 'destroy'])
+        ->middleware(['auth'])->name('reply.destroy');
+
+Route::post('/reply/update/{rep_id}', [ReplyController::class, 'update'])
+        ->middleware(['auth'])->name('reply.update');
+
 require __DIR__.'/auth.php';
