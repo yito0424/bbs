@@ -9,8 +9,12 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
-                    <p class="text-2xl m-4">{{ $thread->content }}</p>
-                    <form method="POST" action="{{ route('thread.store') }}">
+                    <p class="text-2xl mt-4">{{ $thread->content }}</p>
+                    <p>投稿者：{{ $thread->user->name }}</p>
+                    @foreach ($replies as $reply)
+                        <p class="text-xl m-4">{{ $reply->content }}</p>
+                    @endforeach
+                    <form method="POST" action='{{ route("reply.store", ["id" => $thread->id]) }}'>
                         @csrf
 
                         <div class="mt-4">
