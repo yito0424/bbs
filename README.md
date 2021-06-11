@@ -65,4 +65,12 @@ $ docker compose exec app bash
 [app] $ exit
 ```
 11. `http://127.0.0.1:10080/`にアクセスします．
-12. 以下の画面が表示されれば成功です．
+12. 以下の画面が表示されれば成功です．右上のRegisterボタンからアカウントを作成します．
+<img src=https://user-images.githubusercontent.com/62548441/121713831-398b0d80-cb18-11eb-9b8f-bf4f98379ba2.png width = 500px>
+
+## 画面一覧
+- スレッド一覧画面
+- 新規スレッド投稿画面
+- スレッド詳細画面
+- スレッド編集画面
+- 返信編集画面
