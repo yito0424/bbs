@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ThreadController;
+use App\Http\Controllers\ReplyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,5 +30,8 @@ Route::get('/threads/{id}', [ThreadController::class, 'show'])
 
 Route::post('/threads', [ThreadController::class, 'store'])
         ->middleware(['auth'])->name('thread.store');
+
+Route::post('/threads/{id}/reply', [ReplyController::class, 'store'])
+        ->middleware(['auth'])->name('reply.store');
 
 require __DIR__.'/auth.php';
