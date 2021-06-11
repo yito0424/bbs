@@ -25,11 +25,18 @@ Route::get('/dashboard', [ThreadController::class, 'index'])
 Route::get('/threads/new', [ThreadController::class, 'create'])
         ->middleware(['auth'])->name('thread.create');
 
+Route::get('/threads/edit/{id}', [ThreadController::class, 'edit'])
+        ->middleware(['auth'])->name('thread.edit');
+
+Route::post('/threads/update/{id}', [ThreadController::class, 'update'])
+        ->middleware(['auth'])->name('thread.update');
+
 Route::get('/threads/{id}', [ThreadController::class, 'show'])
         ->middleware(['auth'])->name('thread.show');
 
 Route::post('/threads', [ThreadController::class, 'store'])
         ->middleware(['auth'])->name('thread.store');
+
 
 Route::post('/threads/{id}/reply', [ReplyController::class, 'store'])
         ->middleware(['auth'])->name('reply.store');

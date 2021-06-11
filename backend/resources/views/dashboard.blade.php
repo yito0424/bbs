@@ -15,6 +15,11 @@
                                 {{ $thread->content }}
                             </a><br>
                             投稿者：{{ $thread->user->name }}
+                            @auth
+                                @if (Auth::user()->id == $thread->user->id)
+                                 | <a href='{{ route("thread.edit", ["id" =>  $thread->id]) }}'>編集</a>
+                                @endif
+                            @endauth
                         </p>
                     @endforeach
                     <div class="flex items-center justify-end mt-4">
