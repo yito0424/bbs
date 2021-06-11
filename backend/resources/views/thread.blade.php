@@ -12,7 +12,8 @@
                     <p class="text-2xl mt-4">{{ $thread->content }}</p>
                     <p>投稿者：{{ $thread->user->name }}</p>
                     @foreach ($replies as $reply)
-                        <p class="text-xl m-4">{{ $reply->content }}</p>
+                        <p class="text-xl mt-4 ml-4">{{ $reply->content }}</p>
+                        <p class="ml-4 mb-4">投稿者：{{ $reply->user->name }}</p>
                     @endforeach
                     <form method="POST" action='{{ route("reply.store", ["id" => $thread->id]) }}'>
                         @csrf
