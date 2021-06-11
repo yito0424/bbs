@@ -18,6 +18,11 @@
                             @auth
                                 @if (Auth::user()->id == $thread->user->id)
                                  | <a href='{{ route("thread.edit", ["id" =>  $thread->id]) }}'>編集</a>
+                                <form method="POST" action='{{ route("thread.destroy", ["id" => $thread->id]) }}'>
+                                    @csrf
+                                    <input type="hidden" name="_method" value="delete">
+                                    <input type="submit" class="inline-block items-center border-2 border-red-400 bg-red-100 text-red-400 hover:bg-red-400 hover:text-white text-white font-bold py-2 px-4 rounded" value="削除">
+                                </form>
                                 @endif
                             @endauth
                         </p>

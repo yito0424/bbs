@@ -94,8 +94,13 @@ class ThreadController extends Controller
      * @param  \App\Models\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Thread $thread)
+    public function destroy($id, Thread $thread)
     {
-        //
+        $thread = Thread::find($id);
+        $user = \Auth::user();
+        if($user->id == $thread->user_id){
+            $thread->delete();
+        }
+        return redirect()->route('dashboard');
     }
 }

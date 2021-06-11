@@ -34,6 +34,9 @@ Route::post('/threads/update/{id}', [ThreadController::class, 'update'])
 Route::get('/threads/{id}', [ThreadController::class, 'show'])
         ->middleware(['auth'])->name('thread.show');
 
+Route::delete('/threads/{id}', [ThreadController::class, 'destroy'])
+        ->middleware(['auth'])->name('thread.destroy');
+
 Route::post('/threads', [ThreadController::class, 'store'])
         ->middleware(['auth'])->name('thread.store');
 
